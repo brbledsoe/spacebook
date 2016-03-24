@@ -1,7 +1,7 @@
 var SpacebookApp = function () {
   var posts = [];
 
-  // the current id to assign to a post
+  // the current class to assign to a post
   var currentId = 0;
   var $posts = $('.posts');
 

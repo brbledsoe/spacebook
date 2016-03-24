@@ -17,17 +17,9 @@ var SpacebookApp = function () {
     // ]}
   ];
 
-  // the current id to assign to a post
-  var currentId = 0;
+  // the current class to assign to a post
   var $posts = $('.posts');
-
-  var _findPostById = function (id) {
-    for (var i = 0; i < posts.length; i += 1) {
-      if (posts[i].id === id) {
-        return posts[i];
-      }
-    }
-  }
+  var currentId = 0;
 
   var createPost = function (text) {
     var post = {
@@ -53,6 +45,14 @@ var SpacebookApp = function () {
       $posts.append('<div class="post" data-id=' + post.id + '>'
         + '<a href="#" class="remove">remove</a> ' + '<a href="#" class="show-comments">comments</a> ' + post.text +
         commentsContainer + '</div>');
+    }
+  }
+
+  var _findPostById = function (id) {
+    for (var i = 0; i < posts.length; i += 1) {
+      if (posts[i].id === id) {
+        return posts[i];
+      }
     }
   }
 

@@ -61,6 +61,19 @@ var SpacebookApp = function () {
   
   }
 
+  // me funny rendering comments without for loop, but gets erased ery time press new post because of posts.empty
+  var renderComments = function (creComBtn) {
+    var text = $(creComBtn).prev().val();
+
+    // find closest post id in DOM
+    var id = $(creComBtn).closest('.post').data().id;
+    // find the comments-list section
+    var commentsList = $('[data-id=' + id + '] section');
+    // append the text to that specific comments-list secti
+    commentsList.append('<div>' + text + '</div>');
+
+  }
+
   var $posts = $('.posts');
 
   var renderPosts = function () {
@@ -69,7 +82,7 @@ var SpacebookApp = function () {
     for (var i = 0; i < posts.length; i += 1) {
       var post = posts[i];
 
-      var commentsContainer = '<div class="comments-container"> <div class="comments-list"></div>' +
+      var commentsContainer = '<div class="comments-container"> <section class="comments-list"></section>' +
       '<input type="text" class="comment-name">' +
       '<button class="btn btn-primary add-comment">Post Comment</button> </div>';
 
@@ -120,7 +133,8 @@ var SpacebookApp = function () {
     // TODO: Implement
     // removeComment: removeComment,
     toggleComments: toggleComments,
-    newComment: newComment
+    newComment: newComment,
+    renderComments: renderComments
 
   }
 }
@@ -153,6 +167,7 @@ $('.posts').on('click', '.add-comment', function (e) {
   console.log("clicked");
 
   app.newComment(this);
+  app.renderComments(this);
   
 
   // find Id
